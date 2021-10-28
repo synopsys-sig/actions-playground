@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: BDIO
-        path: blackduck/runs/**/bdio/*.bdio
+        path: /home/runner/blackduck/runs/**/bdio/*.bdio
