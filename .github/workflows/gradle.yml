@@ -29,3 +29,8 @@ jobs:
     - name: Synopsys Detect
       run: bash <(curl -s -L https://detect.synopsys.com/detect7.sh) --blackduck.offline.mode=true --detect.tools.excluded=SIGNATURE_SCAN
       shell: bash
+    - name: Archive BDIO
+      uses: actions/upload-artifact@v2
+      with:
+        name: BDIO
+        path: blackduck/runs/**/bdio/*.bdio
