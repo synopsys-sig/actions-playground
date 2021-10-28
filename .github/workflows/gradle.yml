@@ -26,5 +26,6 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - run: bash <(curl -s -L https://detect.synopsys.com/detect7.sh) --blackduck.offline.mode=true
+    - name: Synopsys Detect
+      run: bash <(curl -s -L https://detect.synopsys.com/detect7.sh) --blackduck.offline.mode=true --detect.blackduck.scan.mode=RAPID
       shell: bash
