@@ -34,8 +34,3 @@ jobs:
       with:
         name: BDIO
         path: /home/runner/blackduck/runs/**/bdio/*.bdio
-    - name: Archive Rapid Scan Json
-      uses: actions/upload-artifact@v2
-      with:
-        name: Rapid Scan Json
-        path: /home/runner/blackduck/runs/**/scan/*.json
