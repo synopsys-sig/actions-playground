@@ -33,9 +33,12 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: BDIO
-        path: /home/runner/blackduck/runs/**/bdio/*.bdio
-    - name: Comment PR
-      uses: thollander/actions-comment-pull-request@v1
+        path: /Users/rotte/blackduck/runs/**/bdio/*.bdio
+    - name: 'Comment PR'
+      uses: actions/github-script@v5
+      if: github.event_name == 'pull_request'
       with:
-        message: 'Example of message !'
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
+          github.rest.issues.createComment({ issue_number, owner, repo, body: 'Hello world ! 👋' });
