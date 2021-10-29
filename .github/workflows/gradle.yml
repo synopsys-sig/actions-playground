@@ -27,13 +27,13 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Synopsys Detect
-      run: bash <(curl -s -L https://detect.synopsys.com/detect7.sh) --blackduck.url=${{ secrets.BLACKDUCK_URL}} --blackduck.api.token=${{ secrets.BLACKDUCK_API_TOKEN}}
+      run: bash <(curl -s -L https://detect.synopsys.com/detect7.sh) --blackduck.url=${{ secrets.BLACKDUCK_URL}} --blackduck.api.token=${{ secrets.BLACKDUCK_API_TOKEN}} --detect.blackduck.scan.mode=RAPID
       shell: bash
-    - name: Archive BDIO
+    - name: Archive JSON
       uses: actions/upload-artifact@v2
       with:
-        name: BDIO
-        path: /Users/rotte/blackduck/runs/**/bdio/*.bdio
+        name: Rapid Scan Json
+        path: /Users/rotte/blackduck/runs/**/scan/*.json
     - name: 'Comment PR'
       uses: actions/github-script@v5
       if: github.event_name == 'pull_request'
