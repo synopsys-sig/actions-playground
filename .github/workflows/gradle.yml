@@ -27,10 +27,15 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Synopsys Detect
-      run: bash <(curl -s -L https://detect.synopsys.com/detect7.sh) --blackduck.offline.mode=true --detect.tools.excluded=SIGNATURE_SCAN
+      run: bash <(curl -s -L https://detect.synopsys.com/detect7.sh) --blackduck.url={{ secrets.BLACKDUCK_URL}} --blackduck.api.token={{ secrets.BLACKDUCK_API_TOKEN}}
       shell: bash
     - name: Archive BDIO
       uses: actions/upload-artifact@v2
       with:
         name: BDIO
         path: /home/runner/blackduck/runs/**/bdio/*.bdio
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@v1
+      with:
+        message: 'Example of message !'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
