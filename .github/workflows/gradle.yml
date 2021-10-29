@@ -39,9 +39,10 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
+          let dataFile = require('./simple_spring_boot_application_0_0_1_SNAPSHOT_BlackDuck_DeveloperMode_Result.json');
           github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: 'Hello world ! 👋'
+            body: JSON.stringify(dataFile)
           });
