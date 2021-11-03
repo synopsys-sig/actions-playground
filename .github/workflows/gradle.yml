@@ -19,36 +19,13 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-        cache: gradle
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Test
+    - name: Synopsys Detect
       uses: synopsys-sig/detect-action@main
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           blackduck-url: ${{ secrets.BLACKDUCK_URL }}
           blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
-#    - name: Synopsys Detect
-#      continue-on-error: true
-#      run: bash <(curl -s -L https://detect.synopsys.com/detect7.sh) --blackduck.url=${{ secrets.BLACKDUCK_URL}} --blackduck.api.token=${{ secrets.BLACKDUCK_API_TOKEN}} --detect.blackduck.scan.mode=RAPID --detect.scan.output.path=.
-#      shell: bash
-#    - name: Archive JSON
-#      uses: actions/upload-artifact@v2
-#      with:
-#        name: Rapid Scan Json
-#        path: ./*.json
-#    - name: 'Comment PR'
-#      uses: actions/github-script@v5
-#      if: github.event_name == 'pull_request'
-#      with:
-#        github-token: ${{ secrets.GITHUB_TOKEN }}
-#        script: |
-#          let dataFile = require('./simple_spring_boot_application_0_0_1_SNAPSHOT_BlackDuck_DeveloperMode_Result.json');
-#          github.rest.issues.createComment({
-#            issue_number: context.issue.number,
-#            owner: context.repo.owner,
-#            repo: context.repo.repo,
-#            body: JSON.stringify(dataFile, undefined, 2)
-#          });
