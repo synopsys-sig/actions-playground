@@ -16,9 +16,16 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
       uses: actions/setup-java@v2
+      id: java
       with:
         java-version: '11'
         distribution: 'adopt'
+    - name: Fetch Black Duck Cert
+      shell: bash
+      run: openssl s_client -connect ${{ secrets.BLACKDUCK_HOST }}:443 </dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > blackduck.cert
+    - name : Install Black Duck Cert
+      shell: bash
+      run: keytool -import -noprompt -trustcacerts -alias BlackDuck -file blackduck.cert -keystore ${{ steps.java.outputs.path }}/lib/security/cacerts -storepass ${{ secrets.KEYSTORE_PASS }}
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
