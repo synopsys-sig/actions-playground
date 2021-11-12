@@ -29,4 +29,4 @@ jobs:
           blackduck-url: ${{ secrets.BLACKDUCK_URL }}
           blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
       env:
-          DETECT_DIAGNOSTIC: true
+          DETECT_DIAGNOSTIC_EXTENDED: true
