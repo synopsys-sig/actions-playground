@@ -1,2 +1,2 @@
 # Actions Playground
-...but on develop
+A work in progress repo for messing around with GitHub actions
