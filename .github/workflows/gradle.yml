@@ -23,7 +23,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@main
+      uses: synopsys-sig/detect-action@ro-policycheck
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.7.0
