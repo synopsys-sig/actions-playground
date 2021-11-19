@@ -24,6 +24,8 @@ jobs:
       run: ./gradlew build
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@gk-policy-check
+      env:
+        NODE_EXTRA_CA_CERTS: ${{ secrets.GK_LOCAL_CA_CERT_PATH }}
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.7.0
