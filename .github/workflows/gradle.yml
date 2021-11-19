@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: macos
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -18,29 +18,14 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-        cache: gradle
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
     - name: Synopsys Detect
-      continue-on-error: true
-      run: bash <(curl -s -L https://detect.synopsys.com/detect7.sh) --blackduck.url=${{ secrets.BLACKDUCK_URL}} --blackduck.api.token=${{ secrets.BLACKDUCK_API_TOKEN}} --detect.blackduck.scan.mode=RAPID --detect.scan.output.path=.
-      shell: bash
-    - name: Archive JSON
-      uses: actions/upload-artifact@v2
+      uses: synopsys-sig/detect-action@main
       with:
-        name: Rapid Scan Json
-        path: ./*.json
-    - name: 'Comment PR'
-      uses: actions/github-script@v5
-      if: github.event_name == 'pull_request'
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: 'Hello world ! 👋'
-          });
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          detect-version: 7.7.0
+          blackduck-url: ${{ secrets.BLACKDUCK_URL }}
+          blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
