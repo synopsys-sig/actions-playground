@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos
+    runs-on: gavin
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -23,9 +23,9 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@main
+      uses: synopsys-sig/detect-action@gk-policy-check
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.7.0
-          blackduck-url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
+          blackduck-url: ${{ secrets.GK_BLACKDUCK_URL }}
+          blackduck-api-token: ${{ secrets.GK_BLACKDUCK_API_TOKEN }}
