@@ -20,11 +20,11 @@ jobs:
       run: ./gradlew build
     - name: Fetch Black Duck Cert
       shell: bash
-      run: openssl s_client -connect ${{ secrets.BLACKDUCK_HOST }}:443 </dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ${{ env.RUNNER_TEMP }}/blackduck.cert
+      run: openssl s_client -connect ${{ secrets.BLACKDUCK_HOST }}:443 </dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ${{ env.GITHUB_WORKSPACE }}/blackduck.cert
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@ro-policycheck
       env:
-        NODE_EXTRA_CA_CERTS: ${{ env.RUNNER_TEMP }}/blackduck.cert
+        NODE_EXTRA_CA_CERTS: ${{ env.GITHUB_WORKSPACE }}/blackduck.cert
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         detect-version: 7.7.0
