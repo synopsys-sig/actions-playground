@@ -28,10 +28,10 @@ jobs:
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@ro-policycheck
       env:
-          NODE_EXTRA_CA_CERTS: blackduck.cert
+        NODE_EXTRA_CA_CERTS: blackduck.cert
       with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          detect-version: 7.7.0
-          blackduck-url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        detect-version: 7.7.0
+        blackduck-url: ${{ secrets.BLACKDUCK_URL }}
+        blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
 
