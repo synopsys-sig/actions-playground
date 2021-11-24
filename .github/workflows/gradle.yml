@@ -6,7 +6,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: macos
+    runs-on: rich
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
