@@ -19,7 +19,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@gk-basic-defaults-test
+      uses: synopsys-sig/detect-action@gk-basic-defaults
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.7.0
