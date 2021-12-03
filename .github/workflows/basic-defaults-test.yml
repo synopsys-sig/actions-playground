@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  Basic Defaults Test Job:
+  Basic_Defaults_Test_Job:
     runs-on: gavin
     steps:
     - uses: actions/checkout@v2
