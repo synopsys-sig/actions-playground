@@ -1,0 +1,27 @@
+name: Basic Defaults Test
+
+on:
+  pull_request:
+    branches: [ gk-basic-defaults-test ]
+
+jobs:
+  build:
+    runs-on: gavin
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Java 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
+    - name: Synopsys Detect
+      uses: synopsys-sig/detect-action@gk-basic-defaults-test
+      with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          detect-version: 7.7.0
+          blackduck-url: ${{ secrets.GK_BLACKDUCK_URL }}
+          blackduck-api-token: ${{ secrets.GK_BLACKDUCK_API_TOKEN }}
