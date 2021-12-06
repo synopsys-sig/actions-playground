@@ -2,11 +2,7 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
 name: Simple Detect Workflow
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: ['push', 'pull_request']
 
 jobs:
   build:
@@ -23,7 +19,9 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@main
+      uses: synopsys-sig/detect-action@ro-improved-report
+      env:
+          NODE_EXTRA_CA_CERTS: ${{ secrets.RO_NODE_EXTRA_CA_CERTS }}
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.7.0
