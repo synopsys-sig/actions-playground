@@ -19,7 +19,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Create cert file
-      run: echo ${{secrets.BASE_64_CERT}} > my-cert.pem
+      run: cat <<< "${{secrets.BASE_64_CERT}}" > my-cert.pem
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@main
       env:
