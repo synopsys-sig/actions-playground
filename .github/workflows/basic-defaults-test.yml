@@ -6,7 +6,7 @@ on:
 
 jobs:
   Basic_Defaults_Test_Job:
-    runs-on: gavin
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: Set up Java 11
