@@ -15,11 +15,14 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
-      run: commandLine 'sh','chmod +x gradlew'
+      run: chmod +x gradlew
+      shell: bash
     - name: Build with Gradle
-      run: commandLine 'sh','./gradlew build'
+      run: ./gradlew build
+      shell: bash
     - name: Create cert file
       run: cat <<< "${{secrets.BASE_64_CERT}}" > my-cert.pem
+      shell: bash
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@main
       env:
