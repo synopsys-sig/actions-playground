@@ -15,11 +15,9 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-      shell: sh
+      run: commandLine 'sh','chmod +x gradlew'
     - name: Build with Gradle
-      run: ./gradlew build
-      shell: sh
+      run: commandLine 'sh','./gradlew build'
     - name: Create cert file
       run: cat <<< "${{secrets.BASE_64_CERT}}" > my-cert.pem
     - name: Synopsys Detect
