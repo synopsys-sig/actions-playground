@@ -5,8 +5,8 @@ on:
     branches: [ main ]
 
 jobs:
-  Basic_Defaults_Test_Job:
-    runs-on: ari
+  macOS_Test:
+    runs-on: gavin
     steps:
     - uses: actions/checkout@v2
     - name: Set up Java 11
@@ -15,9 +15,9 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build with Gradle
-      run: ./gradlew.bat build
+      run: ./gradlew build
     - name: Create cert file
-      run: echo "${{secrets.BASE_64_CERT}}" > my-cert.pem
+      run: cat <<< "${{secrets.BASE_64_CERT}}" > my-cert.pem
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@main
       env:
