@@ -23,7 +23,7 @@ jobs:
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@main
       env:
-        NODE_EXTRA_CA_CERTS: my-cert.pem
+        NODE_EXTRA_CA_CERTS: C:\actions-runner\jl_int-hub03.pem
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.7.0
