@@ -19,7 +19,7 @@ jobs:
     - name: Create cert file
       env: 
         SECRET_BASE_64_CERT: ${{ secrets.BASE_64_CERT }}
-      run: echo $env:SECRET_BASE_64_CERT > my-cert.pem
+      run: echo "$env:SECRET_BASE_64_CERT" > my-cert.pem
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@main
       env:
