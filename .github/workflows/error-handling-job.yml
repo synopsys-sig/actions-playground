@@ -1,4 +1,4 @@
-name: Basic Defaults Test
+name: Error Handling Job
 
 on:
   pull_request:
