@@ -1,11 +1,11 @@
-name: Error Handling Job
+name: Error Handling Workflow
 
 on:
   pull_request:
     branches: [ main ]
 
 jobs:
-  macOS_Test:
+  Error_Handling_Job:
     runs-on: gavin
     steps:
     - uses: actions/checkout@v2
