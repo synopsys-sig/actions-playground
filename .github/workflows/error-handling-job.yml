@@ -17,9 +17,9 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Create cert file
-      run: cat <<< "${{secrets.BASE_64_CERT}}" > my-cert.pem
+      run: echo "No cert. Oops :/"
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@main
+      uses: synopsys-sig/detect-action@gk-clean-up-logs
       env:
         NODE_EXTRA_CA_CERTS: ./my-cert.pem
       with:
