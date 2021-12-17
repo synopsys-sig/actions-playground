@@ -2,7 +2,11 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
 name: My GitHub Action Workflow
-on: ['push', 'pull_request']
+on:
+  pull_request:
+    branches:
+      - main
+  push:
 
 jobs:
   build:
