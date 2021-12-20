@@ -1,11 +1,11 @@
-name: Error Handling Workflow
+name: Testing Framework Workflow
 
 on:
   pull_request:
     branches: [ main ]
 
 jobs:
-  Error_Handling_Job:
+  Testing_Framework_Test:
     runs-on: gavin
     steps:
     - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
     - name: Create cert file
       run: cat <<< "${{secrets.BASE_64_CERT}}" > my-cert.pem
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@gk-clean-up-logs
+      uses: synopsys-sig/detect-action@gk-tests
       env:
         NODE_EXTRA_CA_CERTS: ./my-cert.pem
       with:
