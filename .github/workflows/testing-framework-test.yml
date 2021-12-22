@@ -19,7 +19,7 @@ jobs:
     - name: Create cert file
       run: cat <<< "${{secrets.BASE_64_CERT}}" > my-cert.pem
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@gk-tests
+      uses: synopsys-sig/detect-action@gk-refactor
       env:
         NODE_EXTRA_CA_CERTS: ./my-cert.pem
       with:
