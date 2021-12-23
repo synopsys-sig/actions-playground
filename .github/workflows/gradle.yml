@@ -21,9 +21,9 @@ jobs:
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@gk-refactor
       env:
-          NODE_EXTRA_CA_CERTS: ${{ secrets.RO_NODE_EXTRA_CA_CERTS }}
+          NODE_EXTRA_CA_CERTS: ${{ secrets.GK_LOCAL_CA_CERT_PATH }}
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.9.0
-          blackduck-url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
+          blackduck-url: ${{ secrets.GK_BLACKDUCK_URL }}
+          blackduck-api-token: ${{ secrets.GK_BLACKDUCK_API_TOKEN }}
