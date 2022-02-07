@@ -28,45 +28,67 @@ public class BdioUpload {
         String blackDuckInstanceUrl;
         String blackDuckProjectName;
         String bdioPath;
-        try (BufferedReader reader = Files.newBufferedReader(stateJsonFilePath)){
+        try (BufferedReader reader = Files.newBufferedReader(stateJsonFilePath)) {
             JsonObject stateJson = gson.fromJson(reader, JsonObject.class);
 
             JsonObject blackDuckStateJson = stateJson.getAsJsonObject("Blackduck");
 
             blackDuckAuthToken = blackDuckStateJson
-                .get("AuthToken")
-                .getAsString();
+                    .get("AuthToken")
+                    .getAsString();
 
             blackDuckInstanceUrl = blackDuckStateJson
-                .get("InstanceUrl")
-                .getAsString();
+                    .get("InstanceUrl")
+                    .getAsString();
 
             blackDuckProjectName = blackDuckStateJson
-                .get("ProjectName")
-                .getAsString();
+                    .get("ProjectName")
+                    .getAsString();
 
             bdioPath = stateJson
-                .getAsJsonObject("Resources")
-                .getAsJsonObject("Com")
-                .getAsJsonObject("Synopsys")
-                .getAsJsonObject("CentralIntegrations")
-                .getAsJsonObject("BlackDuck")
-                .getAsJsonObject("Bdio")
-                .get("BdioPath")
-                .getAsString();
+                    .getAsJsonObject("Resources")
+                    .getAsJsonObject("Com")
+                    .getAsJsonObject("Synopsys")
+                    .getAsJsonObject("CentralIntegrations")
+                    .getAsJsonObject("BlackDuck")
+                    .getAsJsonObject("Bdio")
+                    .get("BdioPath")
+                    .getAsString();
         }
 
         BlackDuckServerConfig blackDuckServerConfig = BlackDuckServerConfig.newBuilder()
-                                                          .setUrl(blackDuckInstanceUrl)
-                                                          .setApiToken(blackDuckAuthToken)
-                                                          .buildWithoutValidation();
+                .setUrl(blackDuckInstanceUrl)
+                .setApiToken(blackDuckAuthToken)
+                .buildWithoutValidation();
 
-        BlackDuckServicesFactory blackDuckServicesFactory = blackDuckServerConfig.createBlackDuckServicesFactory(new SilentIntLogger());
+        BlackDuckServicesFactory blackDuckServicesFactory = blackDuckServerConfig
+                .createBlackDuckServicesFactory(new SilentIntLogger());
 
         Bdio2UploadService bdio2UploadService = blackDuckServicesFactory.createBdio2UploadService();
 
-        NameVersion nameVersion = new NameVersion(blackDuckProjectName.split(":")[0], blackDuckProjectName.split(":")[1]);
+        NameVersion nameVersion = new NameVersion(blackDuckProjectName.split(":")[0],
+                blackDuckProjectName.split(":")[1]);
 
-        bdio2UploadService.uploadBdio(new UploadBatch(UploadTarget.createDefault(nameVersion, "IO", new File(bdioPath))));
+        bdio2UploadService
+                .uploadBdio(new UploadBatch(UploadTarget.createDefault(nameVersion, "IO", new File(bdioPath))));
+
+        doSomeBadStuff();
     }
+
+    private static void doSomeBadStuff() {
+        System.out.println("Password: fakepass");
+
+        String newStr = null;
+
+        if (newStr.contains("y")) {
+            throw new RuntimeException();
+        } else {
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+            }
+            return;
+        }
+    }
+
 }
