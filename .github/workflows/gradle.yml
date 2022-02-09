@@ -22,8 +22,9 @@ jobs:
       uses: synopsys-sig/detect-action@v0.3.0
       env:
           NODE_EXTRA_CA_CERTS: ${{ secrets.RO_NODE_EXTRA_CA_CERTS }}
+          NODE_TLS_REJECT_UNAUTHORIZED: 0
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.9.0
-          blackduck-url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
+          blackduck-url: ${{ secrets.TROUBLESHOOTING_BD_URL }}
+          blackduck-api-token: ${{ secrets.TROUBLESHOOTING_BD_API_TOKEN }}
