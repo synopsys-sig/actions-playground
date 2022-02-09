@@ -19,7 +19,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@only-report-policy-violations
+      uses: synopsys-sig/detect-action@v0.3.0
       env:
           NODE_EXTRA_CA_CERTS: ${{ secrets.RO_NODE_EXTRA_CA_CERTS }}
       with:
