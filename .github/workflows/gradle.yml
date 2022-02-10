@@ -1,16 +1,12 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: Simple Detect Workflow
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+name: Detect GitHub Action Workflow
+on: ['push', 'pull_request']
 
 jobs:
   build:
-    runs-on: macos
+    runs-on: rich
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -23,9 +19,11 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@main
+      uses: synopsys-sig/detect-action@v0.3.0
+      env:
+          NODE_EXTRA_CA_CERTS: ${{ secrets.TROUBLESHOOTING_CERTS }}
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          detect-version: 7.7.0
-          blackduck-url: ${{ secrets.BLACKDUCK_URL }}
-          blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
+          detect-version: 7.9.0
+          blackduck-url: ${{ secrets.TROUBLESHOOTING_BD_URL }}
+          blackduck-api-token: ${{ secrets.TROUBLESHOOTING_BD_API_TOKEN }}
