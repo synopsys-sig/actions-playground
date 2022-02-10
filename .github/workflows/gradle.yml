@@ -20,6 +20,8 @@ jobs:
       run: ./gradlew build
     - name: Synopsys Detect
       uses: synopsys-sig/detect-action@v0.3.0
+      env:
+          NODE_EXTRA_CA_CERTS: ${{ secrets.TROUBLESHOOTING_CERTS }}
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.9.0
