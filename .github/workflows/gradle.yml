@@ -21,12 +21,12 @@ jobs:
     - name: Create Cert File
       run: cat <<< "${{secrets.BASE_64_CERT}}" > my-cert.pem
     - name: Synopsys Detect
-      uses: synopsys-sig/detect-action@v0.2.0
+      uses: synopsys-sig/detect-action@gk-fail-on-detect-failure
       env:
           NODE_EXTRA_CA_CERTS: ./my-cert.pem
       with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           detect-version: 7.9.0
-          blackduck-url: ${{ secrets.TROUBLESHOOTING_BD_URL }}
+          blackduck-url: fake
           blackduck-api-token: ${{ secrets.TROUBLESHOOTING_BD_API_TOKEN }}
           fail-on-all-policy-severities: false
