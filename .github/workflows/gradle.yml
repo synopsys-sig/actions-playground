@@ -5,7 +5,7 @@ name: My GitHub Action Workflow
 on:
   pull_request:
     branches:
-      - main
+      - protected-branch
   push:
 
 jobs:
