@@ -6,15 +6,15 @@ on: [pull_request]
 
 jobs:
   build:
-    runs-on: rich
+    runs-on: gavin
     steps:
     - uses: actions/checkout@v2
     - name: Coverity Capture
-      run: '${{ secrets.RO_COVERITY_PATH }}/cov-capture --dir idir --source-dir .'
+      run: 'cov-capture --dir idir --project-dir .'
     - name: Coverity Analyze
-      run: '${{ secrets.RO_COVERITY_PATH }}/cov-analyze --dir idir'
+      run: 'cov-analyze --dir idir --strip-path `pwd` --security-file ~/Downloads/license.dat'
     - name: Coverity Format Errors
-      run: '${{ secrets.RO_COVERITY_PATH }}/cov-format-errors --dir idir --json-output-v7 output.json'
+      run: 'cov-format-errors --dir idir --json-output-v7 output.json --security-file ~/Downloads/license.dat'
     - name: Coverity Report
       uses: synopsys-sig/coverity-report-output-v7-json@gk-coverity-api
       env:
