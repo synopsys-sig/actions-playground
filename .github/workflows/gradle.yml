@@ -18,7 +18,7 @@ jobs:
     - name: Coverity Report
       uses: synopsys-sig/coverity-report-output-v7-json@gk-coverity-api
       env:
-        NODE_EXTRA_CA_CERTS: ~/Downloads/my-cert.pem
+        NODE_TLS_REJECT_UNAUTHORIZED: 0
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         json-file-path: output.json
