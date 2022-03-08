@@ -20,3 +20,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         json-file-path: output.json
+        coverity-url: ${{secrets.GK_COV_URL}}
+        coverity-username: ${{secrets.GK_COV_USER}}
+        coverity-password: ${{secrets.GK_COV_PASS}}
+        coverity-project-name: actions-playground
