@@ -6,7 +6,7 @@ on: [pull_request]
 
 jobs:
   build:
-    runs-on: gavin
+    runs-on: rich
     steps:
     - uses: actions/checkout@v2
     - name: Coverity Capture
