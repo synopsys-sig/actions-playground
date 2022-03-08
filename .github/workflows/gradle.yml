@@ -17,6 +17,8 @@ jobs:
       run: '${{ secrets.RO_COVERITY_PATH }}/cov-format-errors --dir idir --json-output-v7 output.json'
     - name: Coverity Report
       uses: synopsys-sig/coverity-report-output-v7-json@gk-coverity-api
+      env:
+        NODE_EXTRA_CA_CERTS: ~/Downloads/my-cert.pem
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         json-file-path: output.json
