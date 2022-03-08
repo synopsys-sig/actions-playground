@@ -7,6 +7,10 @@ on: [pull_request]
 jobs:
   build:
     runs-on: gavin
+    env:
+      COV_URL: ${{secrets.GK_COV_URL}}
+      COV_USER: ${{secrets.GK_COV_USER}}
+      COV_PASS: ${{secrets.GK_COV_PASS}}
     steps:
     - uses: actions/checkout@v2
     - name: Coverity Capture
@@ -14,7 +18,7 @@ jobs:
     - name: Coverity Analyze
       run: 'cov-analyze --dir idir --strip-path `pwd` --security-file ~/Downloads/license.dat'
     - name: Coverity Commit Defects
-      run: `cov-commit-defects --dir idir --security-file ~/Downloads/license.dat --url ${{secrets.GK_COV_URL}} --on-new-cert trust --stream actions-playground-main --scm git --user ${{secrets.GK_COV_USER}} --password ${{secrets.GK_COV_PASS}}`
+      run: cov-commit-defects --dir idir --security-file ~/Downloads/license.dat --url ${COV_URL} --on-new-cert trust --stream actions-playground-main --scm git --user ${COV_USER} --password ${COV_PASS}
     - name: Coverity Format Errors
       run: 'cov-format-errors --dir idir --json-output-v7 output.json --security-file ~/Downloads/license.dat'
     - name: Coverity Report
