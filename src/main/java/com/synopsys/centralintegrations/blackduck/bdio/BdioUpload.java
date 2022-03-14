@@ -63,6 +63,13 @@ public class BdioUpload {
             System.out.println("SELECT * FROM mytable WHERE password = '12345'");
         }
 
+        for (;;) {
+            System.out.println("stuff");
+            if (false) {
+                break;
+            }
+        }
+
         BlackDuckServerConfig blackDuckServerConfig = BlackDuckServerConfig.newBuilder()
                 .setUrl(blackDuckInstanceUrl)
                 .setApiToken(blackDuckAuthToken)
