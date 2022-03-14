@@ -78,5 +78,23 @@ public class BdioUpload {
 
         bdio2UploadService
                 .uploadBdio(new UploadBatch(UploadTarget.createDefault(nameVersion, "IO", new File(bdioPath))));
+        doSomeBadStuff();
     }
+
+    private static void doSomeBadStuff() {
+        System.out.println("Password: fakepass");
+
+        String newStr = null;
+
+        if (newStr.contains("y")) {
+            throw new RuntimeException();
+        } else {
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+            }
+            return;
+        }
+    }
+
 }
