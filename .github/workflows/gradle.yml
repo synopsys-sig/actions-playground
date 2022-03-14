@@ -22,7 +22,7 @@ jobs:
     - name: Coverity Format Errors
       run: 'cov-format-errors --dir idir --json-output-v7 output.json --security-file ~/Downloads/license.dat'
     - name: Coverity Report
-      uses: synopsys-sig/coverity-report-output-v7-json@gk-coverity-api
+      uses: synopsys-sig/coverity-report-output-v7-json@b58dda4
       env:
         NODE_TLS_REJECT_UNAUTHORIZED: 0
       with:
