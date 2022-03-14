@@ -59,7 +59,7 @@ public class BdioUpload {
         int unused = 7;
         String aNullString = null;
 
-        if (null != aNullString) {
+        if ('w' != aNullString.codePointAt(5)) {
             System.out.println("SELECT * FROM mytable WHERE password = '12345'");
         }
 
