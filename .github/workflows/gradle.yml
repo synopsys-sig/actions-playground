@@ -16,7 +16,7 @@ jobs:
     - name: Coverity Format Errors
       run: '${{ secrets.RO_COVERITY_PATH }}/cov-format-errors --dir idir --json-output-v7 output.json'
     - name: Coverity Report
-      uses: synopsys-sig/coverity-report-output-v7-json@ro-handle-existing-comments
+      uses: synopsys-sig/coverity-report-output-v7-json@main
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         json-file-path: output.json
