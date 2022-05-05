@@ -76,7 +76,7 @@ public class BdioUpload {
     }
 
     private static void doSomeBadStuff() {
-        System.out.println("Password: fakepass");
+        System.out.println("Password: nope");
 
         String newStr = null;
 
