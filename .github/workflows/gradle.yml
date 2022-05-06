@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-name: Coverity WorkFLow Test
+name: Coverity WorkFLow Json
 on: [pull_request]
 
 
@@ -25,17 +25,17 @@ jobs:
           cov-commit-defects --dir idir --ticker-mode none --url ${{ secrets.COVERITY_URL }} --on-new-cert trust --stream \
               $COVERITY_STREAM_NAME --scm git --description "GitHub Workflow $GITHUB_WORKFLOW for $GITHUB_REPO" --version $GITHUB_SHA
           cov-format-errors --dir idir --json-output-v7 coverity-results.json
-#
-#      - name: Coverity Pull Request Feedback
-#        uses: synopsys-sig/coverity-report-output-v7-json@v0.1.0
-#        with:
-#          # The following parameters are REQUIRED
-#          json-file-path: ./coverity-results.json
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-#          # If the following optional parameters are specified, the results from the JSON output will be
-#          # compared to the baseline issues in the specified project, and only NEW issues will be reported
-#          # in the pull request.
-#          coverity-url: ${{ secrets.COVERITY_URL }}
-#          coverity-project-name: ${{ github.event.repository.name }}
-#          coverity-username: ${{ secrets.COVERITY_USER}}
-#          coverity-password: ${{ secrets.COVERITY_PASSPHRASE }}
+
+      - name: Coverity Pull Request Feedback
+        uses: synopsys-sig/coverity-report-output-v7-json@v0.1.0
+        with:
+          # The following parameters are REQUIRED
+          json-file-path: ./coverity-results.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # If the following optional parameters are specified, the results from the JSON output will be
+          # compared to the baseline issues in the specified project, and only NEW issues will be reported
+          # in the pull request.
+          coverity-url: ${{ secrets.COVERITY_URL }}
+          coverity-project-name: shpandey
+          coverity-username: ${{ secrets.COVERITY_USER}}
+          coverity-password: ${{ secrets.COVERITY_PASSPHRASE }}
