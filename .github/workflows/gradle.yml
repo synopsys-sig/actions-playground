@@ -27,7 +27,7 @@ jobs:
           cov-format-errors --dir idir --json-output-v7 coverity-results.json
 
       - name: Coverity Pull Request Feedback
-        uses: synopsys-sig/coverity-report-output-v7-json@v0.1.0
+        uses: synopsys-sig/coverity-report-output-v7-json@v0.2.0-sigint90
         with:
           # The following parameters are REQUIRED
           json-file-path: ./coverity-results.json
