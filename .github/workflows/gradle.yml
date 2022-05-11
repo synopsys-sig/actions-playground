@@ -27,7 +27,7 @@ jobs:
           cov-format-errors --dir idir --json-output-v7 coverity-results.json
 
       - name: Coverity Pull Request Feedback
-        uses: synopsys-sig/coverity-report-output-v7-json@v0.2.0-sigint90
+        uses: synopsys-sig/coverity-report-output-v7-json@v0.2.0
         with:
           # The following parameters are REQUIRED
           json-file-path: ./coverity-results.json
@@ -36,6 +36,6 @@ jobs:
           # compared to the baseline issues in the specified project, and only NEW issues will be reported
           # in the pull request.
           coverity-url: ${{ secrets.COVERITY_URL }}
-          coverity-project-name: xyz
+          coverity-project-name: shpandey
           coverity-username: ${{ secrets.COVERITY_USER}}
           coverity-password: ${{ secrets.COVERITY_PASSPHRASE }}
