@@ -36,6 +36,6 @@ jobs:
           # compared to the baseline issues in the specified project, and only NEW issues will be reported
           # in the pull request.
           coverity-url: ${{ secrets.COVERITY_URL }}
-          coverity-project-name:
+          coverity-project-name: abc
           coverity-username: ${{ secrets.COVERITY_USER}}
           coverity-password: ${{ secrets.COVERITY_PASSPHRASE }}
