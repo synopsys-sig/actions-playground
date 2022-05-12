@@ -30,12 +30,12 @@ jobs:
         uses: synopsys-sig/coverity-report-output-v7-json@v0.1.1
         with:
           # The following parameters are REQUIRED
-          json-file-path: ./coverity-results.json
+          json-file-path: ./coverity
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # If the following optional parameters are specified, the results from the JSON output will be
           # compared to the baseline issues in the specified project, and only NEW issues will be reported
           # in the pull request.
           coverity-url: ${{ secrets.COVERITY_URL }}
-          coverity-project-name: kljlkj
+          coverity-project-name: shpandey
           coverity-username: ${{ secrets.COVERITY_USER}}
           coverity-password: ${{ secrets.COVERITY_PASSPHRASE }}
