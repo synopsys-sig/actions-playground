@@ -27,10 +27,10 @@ jobs:
 #          cov-format-errors --dir idir --json-output-v7 coverity-results.json
 
       - name: Coverity Pull Request Feedback
-        uses: synopsys-sig/coverity-report-output-v7-json@v0.1.1-sigint91
+        uses: synopsys-sig/coverity-report-output-v7-json@v0.1.1-sigint92
         with:
           # The following parameters are REQUIRED
-          json-file-path: src/main/resources/coverity-result.json
+          json-file-path: ./coverity-result.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # If the following optional parameters are specified, the results from the JSON output will be
           # compared to the baseline issues in the specified project, and only NEW issues will be reported
