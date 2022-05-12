@@ -16,7 +16,7 @@ jobs:
       COVERITY_STREAM_NAME: ${{secrets.COVERITY_STREAM_NAME}}
       LICENSE_FILE_PATH_LINUX: ${{secrets.LICENSE_FILE_PATH_LINUX}}
 
-#    steps:
+    steps:
 #      - uses: actions/checkout@v2
 #      - name: Coverity Scan (Full analysis)
 #        run: |
@@ -30,7 +30,7 @@ jobs:
         uses: synopsys-sig/coverity-report-output-v7-json@v0.1.1-sigint91
         with:
           # The following parameters are REQUIRED
-          json-file-path: .src/main/resources/coverity-result.json
+          json-file-path: ./coverity-results.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # If the following optional parameters are specified, the results from the JSON output will be
           # compared to the baseline issues in the specified project, and only NEW issues will be reported
