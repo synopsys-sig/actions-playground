@@ -37,5 +37,5 @@ jobs:
           # in the pull request.
           coverity-url: ${{ secrets.COVERITY_URL }}
           coverity-project-name: nknknk
-          coverity-username: ${{ secrets.COVERITY_USER}}
+          coverity-username: knkl
           coverity-password: ${{ secrets.COVERITY_PASSPHRASE }}
